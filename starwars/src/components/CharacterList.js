@@ -3,6 +3,8 @@ import { Card } from 'semantic-ui-react';
 import axios from "axios";
 import CharacterCard from "./CharacterCard";
 
+import styled from "styled-components";
+
 export default function CharacterList() {
     const [chars, setChars] = useState([]);
     
@@ -11,6 +13,7 @@ export default function CharacterList() {
         .get("https://swapi.co/api/people/")
         .then( response => {
             const chars = response.data.results;
+            const charFilms = response.data.results.films;
             console.log("chars:", chars);
             setChars(chars);
         })
@@ -33,6 +36,7 @@ export default function CharacterList() {
                     gender={character.gender}
                     birth_year={character.birth_year}
                     home_world={character.homeworld}
+                    films={character.films}
                     />
                 );
               })
